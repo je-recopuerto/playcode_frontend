@@ -10,7 +10,7 @@ const API_BASE_URL = 'http://localhost:8000'
 
 export default function AIChat() {
   const { messages, addMessage, clearMessages, isOpen, toggleChat } = useAIChat()
-  const { codeMap, language } = useRunner(({ codeMap, language }) => ({ codeMap, language }))
+  const { codeMap, language, setCode } = useRunner(({ codeMap, language, setCode }) => ({ codeMap, language, setCode }))
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -58,12 +58,19 @@ export default function AIChat() {
       }
 
       const data = await response.json()
+
+      console.log(data,"data");
+      
+      // Update the code in the editor with the AI-generated full code
+      if (data.fullCode) {
+        setCode(data.fullCode)
+      }
       
       // Add AI response to messages
       const assistantMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant' as const,
-        content: data.response || data.message || 'No response from AI',
+        content: data.response || data.message || 'Code updated successfully!',
         timestamp: new Date(),
       }
       addMessage(assistantMessage)

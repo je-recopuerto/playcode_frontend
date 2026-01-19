@@ -3,6 +3,7 @@ import { persist } from 'zustand/middleware'
 import { DefaultPythonCode, DefaultCppCode, DefaultTypescriptCode } from '../examples'
 import { Language } from './types'
 import { initWorker } from './utils'
+import { log } from 'console'
 
 export const useRunner = create(
   persist<{
