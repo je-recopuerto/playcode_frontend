@@ -11,10 +11,7 @@ export default function Editor() {
     setCode,
     runCode,
   }))
-
-  console.log(setCode,"code");
   
-
   return (
     <div className="h-full flex flex-col">
       <div className="h-[50px] flex items-center justify-between px-4 flex-shrink-0">
