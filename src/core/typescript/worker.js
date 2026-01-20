@@ -3,7 +3,10 @@ const green = '\x1b[1;32m'
 const normal = '\x1b[0m'
 
 // override the default behaviour of pyodide
-self.console.log = (text) => port.postMessage({ id: 'write', data: green + text + normal })
+self.console.log = (...args) => {
+  const text = args.join(' ')
+  port.postMessage({ id: 'write', data: green + text + normal })
+}
 
 let port
 let babelReadyPromise
