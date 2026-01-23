@@ -6,7 +6,7 @@ import { useRunner } from '../module'
 import clsx from 'clsx'
 
 
-const API_BASE_URL = 'http://localhost:8000'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 export default function AIChat() {
   const { messages, addMessage, clearMessages, isOpen, toggleChat } = useAIChat()

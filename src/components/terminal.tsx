@@ -85,7 +85,7 @@ export default function Terminal() {
           // clear recent output buffer before requesting and running to avoid stale errors
           recentOutputRef.current = ''
 
-          const response = await fetch('http://localhost:8000/api/ai/chat', {
+          const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/ai/chat`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ language, instruction, code: codeMap[language] }),
